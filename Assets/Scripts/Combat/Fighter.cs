@@ -14,16 +14,23 @@ namespace RPG.Combat {
         }
 
         private void Update() {
-            bool inRange = Vector3.SqrMagnitude(target.position - transform.position) < weaponRange * weaponRange;
-            if (target != null && !inRange) {
+            if (target == null) { return; }
+
+            if (!InRange()) {
                 mover.MoveTo(target.position);
             } else {
-                mover.Stop();
+                mover.Stop();   
             }
+            
+            bool InRange() => Vector3.SqrMagnitude(target.position - transform.position) < weaponRange * weaponRange;
         }
 
         public void Attack(CombatTarget combatTarget) {
             target = combatTarget.transform;
+        }
+
+        public void Cancel() {
+            target = null;
         }
     }
 }

@@ -43,6 +43,7 @@ namespace RPG.Control {
             Ray ray = ScreenPointToRay();
             if (Physics.Raycast(ray, out RaycastHit hit)) {
                 if (Input.GetMouseButton(0)) {
+                    fighter.Cancel();
                     mover.MoveTo(hit.point);
                 }
 
