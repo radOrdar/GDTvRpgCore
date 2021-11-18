@@ -20,10 +20,15 @@ namespace RPG.Combat {
             if (!InRange()) {
                 mover.MoveTo(target.position);
             } else {
-                mover.Cancel();   
+                mover.Cancel();
+                AttackingBehaviour();
             }
             
             bool InRange() => Vector3.SqrMagnitude(target.position - transform.position) < weaponRange * weaponRange;
+        }
+
+        private void AttackingBehaviour() {
+            GetComponent<Animator>().SetTrigger("attack");
         }
 
         public void Attack(CombatTarget combatTarget) {
@@ -34,5 +39,7 @@ namespace RPG.Combat {
         public void Cancel() {
             target = null;
         }
+        
+        void Hit() {}
     }
 }
