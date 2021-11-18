@@ -20,7 +20,7 @@ namespace RPG.Control {
             }
 
             if (!InteractWithMovement()) {
-                print("Nothing to do.");
+                // print("Nothing to do.");
             }
         }
 

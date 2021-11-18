@@ -4,7 +4,7 @@ using RPG.Movement;
 using UnityEngine;
 
 namespace RPG.Combat {
-    public class Fighter : MonoBehaviour {
+    public class Fighter : MonoBehaviour, IAction {
         [SerializeField] private float weaponRange = 2f;
 
         private Transform target;
@@ -20,7 +20,7 @@ namespace RPG.Combat {
             if (!InRange()) {
                 mover.MoveTo(target.position);
             } else {
-                mover.Stop();   
+                mover.Cancel();   
             }
             
             bool InRange() => Vector3.SqrMagnitude(target.position - transform.position) < weaponRange * weaponRange;
