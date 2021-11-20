@@ -11,10 +11,11 @@ namespace RPG.Combat {
 
         private Mover mover;
 
-        private Transform target;
+        private Health target;
         private float timeSinceLastAttack;
 
         private void Start() {
+            timeSinceLastAttack = timeBetweenAttacks;
             mover = GetComponent<Mover>();
         }
 
@@ -22,14 +23,18 @@ namespace RPG.Combat {
             timeSinceLastAttack += Time.deltaTime;
             if (target == null) { return; }
 
+            if (target.IsDead) {
+                GetComponent<Animator>().SetTrigger("stopAttack");
+                return;
+            }
             if (!InRange()) {
-                mover.MoveTo(target.position);
+                mover.MoveTo(target.transform.position);
             } else {
                 mover.Cancel();
                 AttackingBehaviour();
             }
 
-            bool InRange() => Vector3.SqrMagnitude(target.position - transform.position) < weaponRange * weaponRange;
+            bool InRange() => Vector3.SqrMagnitude(target.transform.position - transform.position) < weaponRange * weaponRange;
         }
 
         private void AttackingBehaviour() {
@@ -41,18 +46,19 @@ namespace RPG.Combat {
         
         //animation event
         void Hit() {
-            if (target != null && target.TryGetComponent(out Health health)) {
-                health.TakeDamage(weaponDamage);
+            if (target != null) {
+                target.TakeDamage(weaponDamage);
             }
         }
 
         public void Attack(CombatTarget combatTarget) {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.transform;
+            target = combatTarget.GetComponent<Health>();
         }
 
         public void Cancel() {
             target = null;
+            GetComponent<Animator>().SetTrigger("stopAttack");
         }
     }
 }
