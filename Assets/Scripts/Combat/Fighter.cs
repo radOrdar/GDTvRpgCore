@@ -7,6 +7,7 @@ namespace RPG.Combat {
     public class Fighter : MonoBehaviour, IAction {
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBetweenAttacks = 2f;
+        [SerializeField] private float weaponDamage = 5f;
 
         private Mover mover;
 
@@ -37,6 +38,13 @@ namespace RPG.Combat {
                 GetComponent<Animator>().SetTrigger("attack");
             }
         }
+        
+        //animation event
+        void Hit() {
+            if (target != null && target.TryGetComponent(out Health health)) {
+                health.TakeDamage(weaponDamage);
+            }
+        }
 
         public void Attack(CombatTarget combatTarget) {
             GetComponent<ActionScheduler>().StartAction(this);
@@ -46,7 +54,5 @@ namespace RPG.Combat {
         public void Cancel() {
             target = null;
         }
-
-        void Hit() { }
     }
 }
