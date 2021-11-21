@@ -70,7 +70,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: -8789590466547202211, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: health
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -5341199593250607187, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: timeBetweenAttacks

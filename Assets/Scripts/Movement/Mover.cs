@@ -18,7 +18,7 @@ namespace RPG.Movement {
         }
 
         private void UpdateAnimator() {
-            animator.SetFloat("forwardSpeed", navMeshAgent.velocity.magnitude / navMeshAgent.speed);
+            animator.SetFloat("forwardSpeed", navMeshAgent.velocity.magnitude);
         }
 
         public void StartMoveAction(Vector3 destination) {

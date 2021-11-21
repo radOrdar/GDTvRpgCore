@@ -55,6 +55,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4576495695829251710, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
+      propertyPath: m_Speed
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 8410486348481932023, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_Name
       value: Enemy
@@ -86,18 +90,6 @@ CapsuleCollider:
   m_Height: 1.8307912
   m_Direction: 1
   m_Center: {x: 0, y: 0.9595932, z: 0}
---- !u!114 &6605154451979022797
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7222166071685049890}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98131e253a7dd5541bb5401665c5f89e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!114 &5349348054876842013
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -111,6 +103,18 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   chaseRange: 5
+--- !u!114 &6605154451979022797
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7222166071685049890}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 98131e253a7dd5541bb5401665c5f89e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1001 &4696009722273464500
 PrefabInstance:
   m_ObjectHideFlags: 0
