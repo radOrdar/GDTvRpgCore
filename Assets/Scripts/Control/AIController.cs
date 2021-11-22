@@ -30,5 +30,10 @@ namespace RPG.Combat {
                 fighter.Cancel();
             }
         }
+
+        private void OnDrawGizmosSelected() {
+            Gizmos.color = Color.blue;
+            Gizmos.DrawWireSphere(transform.position, chaseRange);
+        }
     }
 }
