@@ -12,10 +12,9 @@ namespace RPG.Combat {
         private Mover mover;
 
         private Health target;
-        private float timeSinceLastAttack;
+        private float timeSinceLastAttack = Mathf.Infinity;
 
         private void Start() {
-            timeSinceLastAttack = timeBetweenAttacks;
             mover = GetComponent<Mover>();
         }
 
@@ -24,7 +23,7 @@ namespace RPG.Combat {
             if (target == null) { return; }
 
             if (target.IsDead) {
-                GetComponent<Animator>().SetTrigger("stopAttack");
+                Cancel();
                 return;
             }
             if (!InRange()) {

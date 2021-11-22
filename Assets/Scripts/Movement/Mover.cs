@@ -7,13 +7,20 @@ namespace RPG.Movement {
     public class Mover : MonoBehaviour, IAction {
         private NavMeshAgent navMeshAgent;
         private Animator animator;
+        private Health health;
 
         private void Start() {
             navMeshAgent = GetComponent<NavMeshAgent>();
+            health = GetComponent<Health>();
             animator = GetComponent<Animator>();
         }
 
         private void Update() {
+            if (health.IsDead) {
+                navMeshAgent.enabled = false;
+                enabled = false;
+                return;
+            }
             UpdateAnimator();
         }
 
