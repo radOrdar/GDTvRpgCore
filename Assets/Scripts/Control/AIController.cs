@@ -7,6 +7,7 @@ namespace RPG.Combat {
     public class AIController : MonoBehaviour {
         [SerializeField] private float chaseRange = 5f;
         [SerializeField] private float suspicionDuration = 1f;
+        [SerializeField] private float dwellDuration = 1f;
         [SerializeField] private PatrolPath patrolPath;
 
         private Fighter fighter;
@@ -14,9 +15,10 @@ namespace RPG.Combat {
         private Health health;
         private Vector3 guardPosition;
 
-        private float timeSinceLastSeen = Mathf.Infinity;
+        private float timeSinceLastSawPlayer = Mathf.Infinity;
+        private float timeSinceArrivedToWaypoint = 0;
         private int currentWaypointIndex = 0;
-        
+
         private void Start() {
             health = GetComponent<Health>();
             fighter = GetComponent<Fighter>();
@@ -29,18 +31,20 @@ namespace RPG.Combat {
                 enabled = false;
                 return;
             }
+
             if (Vector3.Distance(transform.position, player.transform.position) < chaseRange) {
-                timeSinceLastSeen = 0;
+                timeSinceLastSawPlayer = 0;
                 if (fighter.CanAttack(player)) {
                     fighter.Attack(player);
                 }
-            } else if (timeSinceLastSeen < suspicionDuration) {
+            } else if (timeSinceLastSawPlayer < suspicionDuration) {
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             } else {
                 PatrolBehaviour();
             }
 
-            timeSinceLastSeen += Time.deltaTime;
+            timeSinceLastSawPlayer += Time.deltaTime;
+            timeSinceArrivedToWaypoint += Time.deltaTime;
         }
 
         private void PatrolBehaviour() {
@@ -48,13 +52,18 @@ namespace RPG.Combat {
 
             if (patrolPath != null) {
                 if (AtWayPoint()) {
+                    timeSinceArrivedToWaypoint = 0f;
                     CycleWayPoint();
                 }
+
                 nextPosition = GetCurrentWayPoint();
             }
-            GetComponent<Mover>().StartMoveAction(nextPosition);
+
+            if (timeSinceArrivedToWaypoint > dwellDuration) {
+                GetComponent<Mover>().StartMoveAction(nextPosition);
+            }
         }
-        
+
         private bool AtWayPoint() {
             return Vector3.Distance(transform.position, GetCurrentWayPoint()) < 1f;
         }
@@ -66,7 +75,6 @@ namespace RPG.Combat {
         private Vector3 GetCurrentWayPoint() {
             return patrolPath.GetWaypoint(currentWaypointIndex);
         }
-
 
 
         private void OnDrawGizmosSelected() {
