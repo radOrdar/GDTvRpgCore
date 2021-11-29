@@ -82,7 +82,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalPosition.x
-      value: 0
+      value: 26.32
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalPosition.y
@@ -90,7 +90,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalPosition.z
-      value: 0
+      value: -12.21
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalRotation.w
@@ -98,15 +98,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalRotation.x
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalRotation.y
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalRotation.z
-      value: 0
+      value: -0
       objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_LocalEulerAnglesHint.x
@@ -152,3 +152,17 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 3830e01d174007043bffb0f9640655f7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!136 &2091774469
+CapsuleCollider:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5692759932220806575}
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_Enabled: 1
+  m_Radius: 0.3
+  m_Height: 1.68
+  m_Direction: 1
+  m_Center: {x: 0, y: 0.87, z: 0}
