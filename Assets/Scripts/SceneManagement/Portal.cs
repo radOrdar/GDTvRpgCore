@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using UnityEngine;
 using UnityEngine.SceneManagement;
 
@@ -8,8 +9,15 @@ namespace RPG.SceneManagement {
         
         private void OnTriggerEnter(Collider other) {
             if (other.CompareTag("Player")) {
-                SceneManager.LoadScene(sceneInd);
+                StartCoroutine(Transition());
             }
+        }
+
+        private IEnumerator Transition() {
+            DontDestroyOnLoad(gameObject);
+            yield return SceneManager.LoadSceneAsync(sceneInd);
+            print("Scene loaded");
+            Destroy(gameObject);
         }
     }
 }

@@ -113,7 +113,7 @@ NavMeshSettings:
     ledgeDropHeight: 0
     maxJumpAcrossDistance: 0
     minRegionArea: 10
-    manualCellSize: 1
+    manualCellSize: 0
     cellSize: 0.16666667
     manualTileSize: 0
     tileSize: 256
@@ -324,7 +324,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84346185}
-  m_LocalRotation: {x: 0.13727474, y: -0.50521284, z: 0.08177708, w: 0.84807324}
+  m_LocalRotation: {x: 0.13727474, y: -0.50521284, z: 0.08177709, w: 0.84807324}
   m_LocalPosition: {x: -8.1, y: 3.37, z: 11.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
