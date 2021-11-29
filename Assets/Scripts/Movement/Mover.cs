@@ -9,6 +9,11 @@ namespace RPG.Movement {
         private Animator animator;
         private Health health;
 
+        public float Speed {
+            get => navMeshAgent.speed;
+            set => navMeshAgent.speed = value;
+        }
+
         private void Start() {
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
