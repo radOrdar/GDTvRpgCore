@@ -13,6 +13,7 @@ namespace RPG.SceneManagement {
         
         [SerializeField] private int sceneInd = -1;
         [SerializeField] private DestinationIdentifier destination;
+        [SerializeField] private float fadeDuration = 2;
         public Transform spawnPoint;
 
         private void OnTriggerEnter(Collider other) {
@@ -26,11 +27,13 @@ namespace RPG.SceneManagement {
                 Debug.LogError("Scene to load is not set.");
                 yield break;
             }
-            
             DontDestroyOnLoad(gameObject);
+
+            Fader fader = FindObjectOfType<Fader>();
+            yield return StartCoroutine(fader.FadeOut(fadeDuration));
             yield return SceneManager.LoadSceneAsync(sceneInd);
-            
             SetPlayerPosition();
+            yield return StartCoroutine(fader.FadeIn(fadeDuration));
             
             Destroy(gameObject);
         }
