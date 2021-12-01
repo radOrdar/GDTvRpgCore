@@ -1,9 +1,10 @@
 using System;
+using RPG.Saving;
 using UnityEngine;
 using UnityEngine.Playables;
 
 namespace RPG.Cinematics {
-    public class CinematicTrigger : MonoBehaviour {
+    public class CinematicTrigger : MonoBehaviour, ISaveable {
         private bool isActivated = false;
         
         private void OnTriggerEnter(Collider other) {
@@ -11,7 +12,15 @@ namespace RPG.Cinematics {
 
             isActivated = true;
             var playableDirector = GetComponent<PlayableDirector>();
-            playableDirector.Play(); ;
+            playableDirector.Play();
+        }
+
+        public object CaptureState() {
+            return isActivated;
+        }
+
+        public void RestoreState(object state) {
+            isActivated = (bool)state;
         }
     }
 }

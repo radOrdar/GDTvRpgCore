@@ -324,7 +324,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84346185}
-  m_LocalRotation: {x: 0.13727474, y: -0.50521284, z: 0.08177709, w: 0.84807324}
+  m_LocalRotation: {x: 0.13727474, y: -0.50521284, z: 0.08177708, w: 0.84807324}
   m_LocalPosition: {x: -8.1, y: 3.37, z: 11.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -1302,6 +1302,7 @@ GameObject:
   - component: {fileID: 730675547}
   - component: {fileID: 730675546}
   - component: {fileID: 730675549}
+  - component: {fileID: 730675550}
   m_Layer: 2
   m_Name: Intro sequence
   m_TagString: Untagged
@@ -1401,6 +1402,19 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 0edfdedf44eeaaa4f9ffa3c096c90414, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &730675550
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 730675543}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3ea9374b509b70f4bba37e4a2ca8cf00, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  uniqueIdentifier: 5d5e5e93-190d-4a53-ace6-948f97d99b2c
 --- !u!1001 &860164488
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1677,7 +1691,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 600339386}
-  m_PathPosition: 0
+  m_PathPosition: 2
   m_PositionUnits: 2
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -2951,6 +2965,10 @@ PrefabInstance:
     - target: {fileID: 3117569501752290236, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: uniqueIdentifier
       value: 0e979f1c-7663-43aa-9971-ce1e398e32b9
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374117531900312510, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 0.7400474
       objectReference: {fileID: 0}
     - target: {fileID: 5374117533448801476, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: m_RootOrder
