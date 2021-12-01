@@ -324,7 +324,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 84346185}
-  m_LocalRotation: {x: 0.13727474, y: -0.50521284, z: 0.08177708, w: 0.84807324}
+  m_LocalRotation: {x: 0.13727474, y: -0.50521284, z: 0.08177709, w: 0.84807324}
   m_LocalPosition: {x: -8.1, y: 3.37, z: 11.51}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children:
@@ -875,6 +875,10 @@ PrefabInstance:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 143296085}
+    - target: {fileID: 5399130569578132145, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
+      propertyPath: uniqueIdentifier
+      value: ba2faccd-a54e-4413-b7dc-d916688d1d69
+      objectReference: {fileID: 0}
     - target: {fileID: 7222166071685049890, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
       propertyPath: m_Name
       value: Enemy1
@@ -1468,6 +1472,10 @@ PrefabInstance:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 1442059078}
+    - target: {fileID: 5399130569578132145, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
+      propertyPath: uniqueIdentifier
+      value: ff4e4404-4ae2-4a49-85dd-1595e0a0c8cd
+      objectReference: {fileID: 0}
     - target: {fileID: 7222166071685049890, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
       propertyPath: m_Name
       value: Enemy3
@@ -1669,7 +1677,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Path: {fileID: 600339386}
-  m_PathPosition: 2
+  m_PathPosition: 0
   m_PositionUnits: 2
   m_PathOffset: {x: 0, y: 0, z: 0}
   m_XDamping: 0
@@ -2629,6 +2637,10 @@ PrefabInstance:
       propertyPath: patrolPath
       value: 
       objectReference: {fileID: 248569761}
+    - target: {fileID: 5399130569578132145, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 6d2cbc57-b799-4952-943e-9cd40f9179c3
+      objectReference: {fileID: 0}
     - target: {fileID: 7222166071685049890, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
       propertyPath: m_Name
       value: Enemy2
@@ -2936,6 +2948,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3117569501752290236, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: uniqueIdentifier
+      value: 0e979f1c-7663-43aa-9971-ce1e398e32b9
+      objectReference: {fileID: 0}
     - target: {fileID: 5374117533448801476, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: m_RootOrder
       value: 2
