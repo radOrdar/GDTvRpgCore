@@ -1,3 +1,4 @@
+using System;
 using RPG.Combat;
 using RPG.Core;
 using RPG.Saving;
@@ -15,7 +16,7 @@ namespace RPG.Movement {
             set => navMeshAgent.speed = value;
         }
 
-        private void Start() {
+        private void Awake() {
             navMeshAgent = GetComponent<NavMeshAgent>();
             health = GetComponent<Health>();
             animator = GetComponent<Animator>();

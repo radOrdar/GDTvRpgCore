@@ -31,7 +31,9 @@ namespace RPG.SceneManagement {
 
             Fader fader = FindObjectOfType<Fader>();
             yield return StartCoroutine(fader.FadeOut(fadeDuration));
+            FindObjectOfType<SavingWrapper>().Save();
             yield return SceneManager.LoadSceneAsync(sceneInd);
+            FindObjectOfType<SavingWrapper>().Load();
             SetPlayerPosition();
             yield return StartCoroutine(fader.FadeIn(fadeDuration));
             
