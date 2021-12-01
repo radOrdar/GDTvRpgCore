@@ -31,10 +31,12 @@ namespace RPG.SceneManagement {
 
             Fader fader = FindObjectOfType<Fader>();
             yield return StartCoroutine(fader.FadeOut(fadeDuration));
-            FindObjectOfType<SavingWrapper>().Save();
+            SavingWrapper savingWrapper = FindObjectOfType<SavingWrapper>();    
+            savingWrapper.Save();
             yield return SceneManager.LoadSceneAsync(sceneInd);
-            FindObjectOfType<SavingWrapper>().Load();
+            savingWrapper.Load();
             SetPlayerPosition();
+            savingWrapper.Save();
             yield return StartCoroutine(fader.FadeIn(fadeDuration));
             
             Destroy(gameObject);
