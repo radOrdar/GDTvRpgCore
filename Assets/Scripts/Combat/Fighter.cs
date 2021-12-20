@@ -1,4 +1,3 @@
-using System;
 using RPG.Core;
 using RPG.Movement;
 using UnityEngine;
@@ -8,6 +7,8 @@ namespace RPG.Combat {
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBetweenAttacks = 2f;
         [SerializeField] private float weaponDamage = 5f;
+        [SerializeField] private GameObject weaponPrefab;
+        [SerializeField] private Transform handTransform;
 
         private Mover mover;
 
@@ -15,7 +16,14 @@ namespace RPG.Combat {
         private float timeSinceLastAttack = Mathf.Infinity;
 
         private void Start() {
+            SpawnWeapon();
             mover = GetComponent<Mover>();
+        }
+
+        private void SpawnWeapon() {
+            if (weaponPrefab && handTransform) {
+                Instantiate(weaponPrefab, handTransform);
+            }
         }
 
         private void Update() {
@@ -26,6 +34,7 @@ namespace RPG.Combat {
                 Cancel();
                 return;
             }
+
             if (!InRange()) {
                 mover.MoveTo(target.transform.position);
             } else {

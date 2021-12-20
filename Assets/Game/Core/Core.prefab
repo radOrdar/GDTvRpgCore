@@ -332,6 +332,14 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 5374117533448801476}
     m_Modifications:
+    - target: {fileID: 1033731686984487157, guid: 260015d50e287d6499cba1f5e37f47c9, type: 3}
+      propertyPath: weaponPrefab
+      value: 
+      objectReference: {fileID: 4330132950930657953, guid: 434e527f8c7d5fe4b9ea38ca8efa2c95, type: 3}
+    - target: {fileID: 1033731686984487157, guid: 260015d50e287d6499cba1f5e37f47c9, type: 3}
+      propertyPath: handTransform
+      value: 
+      objectReference: {fileID: 7805932648564576344}
     - target: {fileID: 3243794772990888370, guid: 260015d50e287d6499cba1f5e37f47c9, type: 3}
       propertyPath: m_RootOrder
       value: 1
@@ -385,5 +393,10 @@ PrefabInstance:
 --- !u!4 &7462734258473675570 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 3243794772990888370, guid: 260015d50e287d6499cba1f5e37f47c9, type: 3}
+  m_PrefabInstance: {fileID: 5374117532620956288}
+  m_PrefabAsset: {fileID: 0}
+--- !u!4 &7805932648564576344 stripped
+Transform:
+  m_CorrespondingSourceObject: {fileID: 2792386863783146200, guid: 260015d50e287d6499cba1f5e37f47c9, type: 3}
   m_PrefabInstance: {fileID: 5374117532620956288}
   m_PrefabAsset: {fileID: 0}
