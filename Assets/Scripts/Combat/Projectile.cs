@@ -4,22 +4,19 @@ using UnityEngine;
 namespace RPG.Combat {
     public class Projectile : MonoBehaviour {
         [SerializeField] private float speed;
-
+        [SerializeField] private bool isHoming;
+        
         private Health aimTarget;
         private float damage;
 
         private void Update() {
-            if (!aimTarget) {
-                Destroy(gameObject);
-                return;
-            }
-
-            transform.LookAt(GetAimLocation());
+            if (isHoming && aimTarget && !aimTarget.IsDead) transform.LookAt(GetAimLocation());
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
         public void SetTarget(Health aimTarget, float damage) {
             this.aimTarget = aimTarget;
+            transform.LookAt(GetAimLocation());
             this.damage = damage;
         }
 
@@ -34,7 +31,7 @@ namespace RPG.Combat {
 
         private void OnTriggerEnter(Collider other) {
             if (other.TryGetComponent(out Health health)) {
-                if (aimTarget != health) return;
+                if (!aimTarget || aimTarget != health || aimTarget.IsDead) return;
                 health.TakeDamage(damage);
                 Destroy(gameObject);
             }

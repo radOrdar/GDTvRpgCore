@@ -47,6 +47,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   speed: 20
+  isHoming: 1
 --- !u!136 &-4332162823922511429
 CapsuleCollider:
   m_ObjectHideFlags: 0
