@@ -2962,6 +2962,22 @@ PrefabInstance:
       propertyPath: m_Enabled
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 4957405537845424757, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: weaponOverride
+      value: 
+      objectReference: {fileID: 22100000, guid: 70b153b096836684ca2f46ced3fe638c, type: 2}
+    - target: {fileID: 5374117531900312510, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5011697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374117531900312510, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.1679435
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374117531900312510, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.359382
+      objectReference: {fileID: 0}
     - target: {fileID: 5374117531900312510, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: m_LocalRotation.w
       value: 0.7400474
@@ -2977,6 +2993,18 @@ PrefabInstance:
     - target: {fileID: 5374117531900312510, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: m_LocalRotation.z
       value: 0.1506634
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374117532546706550, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -3.5011697
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374117532546706550, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.1679435
+      objectReference: {fileID: 0}
+    - target: {fileID: 5374117532546706550, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -8.359382
       objectReference: {fileID: 0}
     - target: {fileID: 5374117533448801476, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: m_RootOrder
@@ -3025,6 +3053,14 @@ PrefabInstance:
     - target: {fileID: 5374117533448801479, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: m_Name
       value: Core
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462734258473675570, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: -9.4
+      objectReference: {fileID: 0}
+    - target: {fileID: 7462734258473675570, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -7.3
       objectReference: {fileID: 0}
     - target: {fileID: 7805932648564871924, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: m_IsActive

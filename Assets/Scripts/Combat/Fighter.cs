@@ -9,6 +9,7 @@ namespace RPG.Combat {
         [SerializeField] private float weaponDamage = 5f;
         [SerializeField] private GameObject weaponPrefab;
         [SerializeField] private Transform handTransform;
+        [SerializeField] private AnimatorOverrideController weaponOverride;
 
         private Mover mover;
 
@@ -23,6 +24,10 @@ namespace RPG.Combat {
         private void SpawnWeapon() {
             if (weaponPrefab && handTransform) {
                 Instantiate(weaponPrefab, handTransform);
+            }
+
+            if (weaponOverride) {
+                GetComponent<Animator>().runtimeAnimatorController = weaponOverride;
             }
         }
 
