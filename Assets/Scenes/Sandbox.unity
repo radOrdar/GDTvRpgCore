@@ -946,6 +946,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 2693849968991923064, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
+      propertyPath: defaultWeapon
+      value: 
+      objectReference: {fileID: 11400000, guid: 5836be5ec480fc24e9e339187f797244, type: 2}
     - target: {fileID: 5349348054876842013, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
       propertyPath: patrolPath
       value: 
@@ -1557,6 +1561,18 @@ PrefabInstance:
       propertyPath: m_Materials.Array.data[0]
       value: 
       objectReference: {fileID: 2100000, guid: e8bc6160ccf0e9b4e950bcb511403374, type: 2}
+    - target: {fileID: 4844491853644102088, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
+      propertyPath: m_Radius
+      value: 0.322783
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844491853644102088, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
+      propertyPath: m_Center.x
+      value: -0.0040699644
+      objectReference: {fileID: 0}
+    - target: {fileID: 4844491853644102088, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
+      propertyPath: m_Center.z
+      value: -0.007558187
+      objectReference: {fileID: 0}
     - target: {fileID: 5349348054876842013, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
       propertyPath: patrolPath
       value: 

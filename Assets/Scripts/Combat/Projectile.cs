@@ -6,16 +6,21 @@ namespace RPG.Combat {
         [SerializeField] private float speed;
 
         private Health aimTarget;
+        private float damage;
 
         private void Update() {
-            if (!aimTarget) return;
-            
+            if (!aimTarget) {
+                Destroy(gameObject);
+                return;
+            }
+
             transform.LookAt(GetAimLocation());
             transform.Translate(Vector3.forward * speed * Time.deltaTime);
         }
 
-        public void SetTarget(Health target) {
-            aimTarget = target;
+        public void SetTarget(Health aimTarget, float damage) {
+            this.aimTarget = aimTarget;
+            this.damage = damage;
         }
 
         private Vector3 GetAimLocation() {
@@ -25,6 +30,14 @@ namespace RPG.Combat {
             }
 
             return aimTarget.transform.position + Vector3.up * targetCollider.bounds.size.y / 2;
+        }
+
+        private void OnTriggerEnter(Collider other) {
+            if (other.TryGetComponent(out Health health)) {
+                if (aimTarget != health) return;
+                health.TakeDamage(damage);
+                Destroy(gameObject);
+            }
         }
     }
 }

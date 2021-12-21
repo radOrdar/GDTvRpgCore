@@ -29,7 +29,7 @@ namespace RPG.Combat {
             Projectile projectile = Instantiate(projectilePrefab,
                 isRightHanded ? rightHand.position : leftHand.position,
                 Quaternion.identity);
-            projectile.SetTarget(target);
+            projectile.SetTarget(target, weaponDamage);
         }
     }
 }
