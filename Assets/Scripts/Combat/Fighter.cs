@@ -4,12 +4,10 @@ using UnityEngine;
 
 namespace RPG.Combat {
     public class Fighter : MonoBehaviour, IAction {
-        [SerializeField] private float weaponRange = 2f;
-        [SerializeField] private float timeBetweenAttacks = 2f;
-        [SerializeField] private float weaponDamage = 5f;
-        [SerializeField] private GameObject weaponPrefab;
+        
         [SerializeField] private Transform handTransform;
-        [SerializeField] private AnimatorOverrideController weaponOverride;
+        [SerializeField] private WeaponSO weaponSo;
+        
 
         private Mover mover;
 
@@ -22,12 +20,8 @@ namespace RPG.Combat {
         }
 
         private void SpawnWeapon() {
-            if (weaponPrefab && handTransform) {
-                Instantiate(weaponPrefab, handTransform);
-            }
-
-            if (weaponOverride) {
-                GetComponent<Animator>().runtimeAnimatorController = weaponOverride;
+            if (weaponSo && handTransform) {
+                weaponSo.Spawn(handTransform, GetComponent<Animator>());
             }
         }
 
@@ -47,11 +41,11 @@ namespace RPG.Combat {
                 AttackingBehaviour();
             }
 
-            bool InRange() => Vector3.SqrMagnitude(target.transform.position - transform.position) < weaponRange * weaponRange;
+            bool InRange() => Vector3.SqrMagnitude(target.transform.position - transform.position) < weaponSo.WeaponRange * weaponSo.WeaponRange;
         }
 
         private void AttackingBehaviour() {
-            if (timeSinceLastAttack >= timeBetweenAttacks) {
+            if (timeSinceLastAttack >= weaponSo.TimeBetweenAttacks) {
                 timeSinceLastAttack = 0;
                 transform.LookAt(target.transform);
                 GetComponent<Animator>().ResetTrigger("stopAttack");
@@ -68,7 +62,7 @@ namespace RPG.Combat {
         //animation event
         void Hit() {
             if (target != null) {
-                target.TakeDamage(weaponDamage);
+                target.TakeDamage(weaponSo.WeaponDamage);
             }
         }
 

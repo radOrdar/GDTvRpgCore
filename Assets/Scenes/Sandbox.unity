@@ -2959,10 +2959,6 @@ PrefabInstance:
     m_TransformParent: {fileID: 0}
     m_Modifications:
     - target: {fileID: 4957405537845424757, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
-      propertyPath: m_Enabled
-      value: 1
-      objectReference: {fileID: 0}
-    - target: {fileID: 4957405537845424757, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: weaponOverride
       value: 
       objectReference: {fileID: 22100000, guid: 70b153b096836684ca2f46ced3fe638c, type: 2}

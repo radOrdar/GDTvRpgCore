@@ -73,6 +73,10 @@ PrefabInstance:
       value: 30
       objectReference: {fileID: 0}
     - target: {fileID: -5341199593250607187, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
+      propertyPath: weaponSo
+      value: 
+      objectReference: {fileID: 11400000, guid: 78cccfe393e769f419aeb040c076450d, type: 2}
+    - target: {fileID: -5341199593250607187, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: timeBetweenAttacks
       value: 1
       objectReference: {fileID: 0}
