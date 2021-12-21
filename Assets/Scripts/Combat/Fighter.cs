@@ -5,7 +5,8 @@ using UnityEngine;
 namespace RPG.Combat {
     public class Fighter : MonoBehaviour, IAction {
         
-        [SerializeField] private Transform handTransform;
+        [SerializeField] private Transform rightHandTransform;
+        [SerializeField] private Transform leftHandTransform;
         [SerializeField] private WeaponSO defaultWeapon;
 
         private WeaponSO currentWeapon;
@@ -20,8 +21,8 @@ namespace RPG.Combat {
         }
 
         public void EquipWeapon(WeaponSO weapon) {
-            if (weapon && handTransform) {
-                weapon.Spawn(handTransform, GetComponent<Animator>());
+            if (weapon && rightHandTransform) {
+                weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
                 currentWeapon = weapon;
             }
         }
