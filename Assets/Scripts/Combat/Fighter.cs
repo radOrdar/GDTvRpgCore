@@ -4,7 +4,6 @@ using UnityEngine;
 
 namespace RPG.Combat {
     public class Fighter : MonoBehaviour, IAction {
-        
         [SerializeField] private Transform rightHandTransform;
         [SerializeField] private Transform leftHandTransform;
         [SerializeField] private WeaponSO defaultWeapon;
@@ -63,9 +62,17 @@ namespace RPG.Combat {
 
         //animation event
         void Hit() {
-            if (target != null) {
+            if (target == null) return;
+            
+            if (currentWeapon.HasProjectile) {
+                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            } else {
                 target.TakeDamage(currentWeapon.WeaponDamage);
             }
+        }
+
+        void Shoot() {
+            Hit();
         }
 
         public void Attack(GameObject combatTarget) {
