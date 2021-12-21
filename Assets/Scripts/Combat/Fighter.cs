@@ -8,7 +8,8 @@ namespace RPG.Combat {
         [SerializeField] private Transform leftHandTransform;
         [SerializeField] private WeaponSO defaultWeapon;
 
-        private WeaponSO currentWeapon;
+        private WeaponSO currentWeaponSO;
+        private GameObject currentWeaponInstance;
         private Mover mover;
 
         private Health target;
@@ -21,8 +22,9 @@ namespace RPG.Combat {
 
         public void EquipWeapon(WeaponSO weapon) {
             if (weapon && rightHandTransform) {
-                weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
-                currentWeapon = weapon;
+                Destroy(currentWeaponInstance);
+                currentWeaponInstance = weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+                currentWeaponSO = weapon;
             }
         }
 
@@ -42,11 +44,11 @@ namespace RPG.Combat {
                 AttackingBehaviour();
             }
 
-            bool InRange() => Vector3.SqrMagnitude(target.transform.position - transform.position) < currentWeapon.WeaponRange * currentWeapon.WeaponRange;
+            bool InRange() => Vector3.SqrMagnitude(target.transform.position - transform.position) < currentWeaponSO.WeaponRange * currentWeaponSO.WeaponRange;
         }
 
         private void AttackingBehaviour() {
-            if (timeSinceLastAttack >= currentWeapon.TimeBetweenAttacks) {
+            if (timeSinceLastAttack >= currentWeaponSO.TimeBetweenAttacks) {
                 timeSinceLastAttack = 0;
                 transform.LookAt(target.transform);
                 GetComponent<Animator>().ResetTrigger("stopAttack");
@@ -64,10 +66,10 @@ namespace RPG.Combat {
         void Hit() {
             if (target == null) return;
             
-            if (currentWeapon.HasProjectile) {
-                currentWeapon.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+            if (currentWeaponSO.HasProjectile) {
+                currentWeaponSO.LaunchProjectile(rightHandTransform, leftHandTransform, target);
             } else {
-                target.TakeDamage(currentWeapon.WeaponDamage);
+                target.TakeDamage(currentWeaponSO.WeaponDamage);
             }
         }
 

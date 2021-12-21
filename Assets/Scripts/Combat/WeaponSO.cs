@@ -17,11 +17,12 @@ namespace RPG.Combat {
         public float WeaponRange => weaponRange;
         public bool HasProjectile => projectilePrefab != null;
 
-        public void Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator) {
-            if (equippedPrefab)
-                Instantiate(equippedPrefab,
-                    isRightHanded ? rightHandTransform : leftHandTransform);
+        public GameObject Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator) {
             if (weaponOverride) animator.runtimeAnimatorController = weaponOverride;
+            if (equippedPrefab)
+                return Instantiate(equippedPrefab,
+                    isRightHanded ? rightHandTransform : leftHandTransform);
+            return null;
         }
 
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target) {
