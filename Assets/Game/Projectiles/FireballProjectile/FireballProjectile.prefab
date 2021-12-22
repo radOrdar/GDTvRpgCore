@@ -4910,6 +4910,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   speed: 5
   isHoming: 1
+  impactFX: {fileID: 2302457091073469191, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
 --- !u!65 &8320201626177650630
 BoxCollider:
   m_ObjectHideFlags: 0
