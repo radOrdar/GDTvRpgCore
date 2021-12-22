@@ -18,7 +18,14 @@ namespace RPG.Combat {
         public bool HasProjectile => projectilePrefab != null;
 
         public GameObject Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator) {
-            if (weaponOverride) animator.runtimeAnimatorController = weaponOverride;
+            if (weaponOverride) {
+                animator.runtimeAnimatorController = weaponOverride;
+            } else {
+                var animatorOverride = animator.runtimeAnimatorController as AnimatorOverrideController;
+                if (animatorOverride) {
+                    animator.runtimeAnimatorController = animatorOverride.runtimeAnimatorController;
+                }
+            }
             if (equippedPrefab)
                 return Instantiate(equippedPrefab,
                     isRightHanded ? rightHandTransform : leftHandTransform);
