@@ -6,6 +6,8 @@ namespace RPG.Combat {
         [SerializeField] private float speed;
         [SerializeField] private bool isHoming;
         [SerializeField] private ParticleSystem impactFX;
+        [SerializeField] private GameObject[] destroyOnHit = {};
+        [SerializeField] private float lifeAfterImpact = .2f;
         
         private Health aimTarget;
         private float damage;
@@ -19,6 +21,7 @@ namespace RPG.Combat {
             this.aimTarget = aimTarget;
             transform.LookAt(GetAimLocation());
             this.damage = damage;
+            Destroy(gameObject, 10f);
         }
 
         private Vector3 GetAimLocation() {
@@ -34,8 +37,12 @@ namespace RPG.Combat {
             if (other.TryGetComponent(out Health health)) {
                 if (!aimTarget || aimTarget != health || aimTarget.IsDead) return;
                 health.TakeDamage(damage);
+                speed = 0;
                 if(impactFX) Instantiate(impactFX, GetAimLocation(), transform.rotation);
-                Destroy(gameObject);
+                foreach (var go in destroyOnHit) {
+                    Destroy(go);
+                }
+                Destroy(gameObject, lifeAfterImpact);
             }
         }
     }

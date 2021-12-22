@@ -4908,9 +4908,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 8f3ec2ba22ec26542acfbbaeb6e9bb82, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 5
+  speed: 10
   isHoming: 1
   impactFX: {fileID: 2302457091073469191, guid: 69d1b1037536b504884c93bb73d662db, type: 3}
+  destroyOnHit:
+  - {fileID: 1128894202259948155}
+  lifeAfterImpact: 0.2
 --- !u!65 &8320201626177650630
 BoxCollider:
   m_ObjectHideFlags: 0
