@@ -14,7 +14,7 @@ namespace RPG.Combat {
         private GameObject currentWeaponInstance;
         private Mover mover;
 
-        private Health target;
+        public Health Target { get; private set; }
         private float timeSinceLastAttack = Mathf.Infinity;
 
         private void Awake() {
@@ -35,27 +35,27 @@ namespace RPG.Combat {
 
         private void Update() {
             timeSinceLastAttack += Time.deltaTime;
-            if (target == null) { return; }
+            if (Target == null) { return; }
 
-            if (target.IsDead) {
+            if (Target.IsDead) {
                 Cancel();
                 return;
             }
 
             if (!InRange()) {
-                mover.MoveTo(target.transform.position);
+                mover.MoveTo(Target.transform.position);
             } else {
                 mover.Cancel();
                 AttackingBehaviour();
             }
 
-            bool InRange() => Vector3.SqrMagnitude(target.transform.position - transform.position) < currentWeaponSO.WeaponRange * currentWeaponSO.WeaponRange;
+            bool InRange() => Vector3.SqrMagnitude(Target.transform.position - transform.position) < currentWeaponSO.WeaponRange * currentWeaponSO.WeaponRange;
         }
 
         private void AttackingBehaviour() {
             if (timeSinceLastAttack >= currentWeaponSO.TimeBetweenAttacks) {
                 timeSinceLastAttack = 0;
-                transform.LookAt(target.transform);
+                transform.LookAt(Target.transform);
                 GetComponent<Animator>().ResetTrigger("stopAttack");
                 GetComponent<Animator>().SetTrigger("attack");
             }
@@ -69,12 +69,12 @@ namespace RPG.Combat {
 
         //animation event
         void Hit() {
-            if (target == null) return;
+            if (Target == null) return;
             
             if (currentWeaponSO.HasProjectile) {
-                currentWeaponSO.LaunchProjectile(rightHandTransform, leftHandTransform, target);
+                currentWeaponSO.LaunchProjectile(rightHandTransform, leftHandTransform, Target);
             } else {
-                target.TakeDamage(currentWeaponSO.WeaponDamage);
+                Target.TakeDamage(currentWeaponSO.WeaponDamage);
             }
         }
 
@@ -84,11 +84,11 @@ namespace RPG.Combat {
 
         public void Attack(GameObject combatTarget) {
             GetComponent<ActionScheduler>().StartAction(this);
-            target = combatTarget.GetComponent<Health>();
+            Target = combatTarget.GetComponent<Health>();
         }
 
         public void Cancel() {
-            target = null;
+            Target = null;
             mover.Cancel();
             GetComponent<Animator>().ResetTrigger("attack");
             GetComponent<Animator>().SetTrigger("stopAttack");
