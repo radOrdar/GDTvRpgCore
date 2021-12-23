@@ -13,10 +13,12 @@ namespace RPG.Attributes {
             health = GetComponent<BaseStats>().GetHealth();
         }
 
-        public void TakeDamage(float damage) {
+        public void TakeDamage(GameObject instigator, float damage) {
             if (health == 0) return;
             health = Mathf.Max(health - damage, 0);
             if (health == 0) {
+                Experience experience = instigator.GetComponent<Experience>();
+                if (experience) experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
                 Die();
             }
         }
