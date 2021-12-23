@@ -21,6 +21,11 @@ MonoBehaviour:
     - 400
     - 700
   - CharacterClass: 10
-    healthProgression: []
+    healthProgression:
+    - 30
   - CharacterClass: 20
-    healthProgression: []
+    healthProgression:
+    - 30
+  - CharacterClass: 30
+    healthProgression:
+    - 30
