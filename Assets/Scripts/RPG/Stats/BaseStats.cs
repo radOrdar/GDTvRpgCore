@@ -8,7 +8,7 @@ namespace RPG.Stats {
         [SerializeField] private Progression progression;
 
         public float GetStat(Stat stat) {
-            return progression.GetStat(characterClass, stat , startingLevel);
+            return progression.GetStat(characterClass, stat, startingLevel);
         }
     }
 }

@@ -3,18 +3,18 @@ using UnityEngine;
 
 namespace RPG.Attributes {
     public class Experience : MonoBehaviour, ISaveable {
-        [SerializeField] private float experiencePoints = 0;
+        [field: SerializeField] public float ExperiencePoints { get; private set; } = 0;
 
         public void GainExperience(float experience) {
-            experiencePoints += experience;
+            ExperiencePoints += experience;
         }
 
         public object CaptureState() {
-            return experiencePoints;
+            return ExperiencePoints;
         }
 
         public void RestoreState(object state) {
-            experiencePoints = (float)state;
+            ExperiencePoints = (float)state;
         }
     }
 }
