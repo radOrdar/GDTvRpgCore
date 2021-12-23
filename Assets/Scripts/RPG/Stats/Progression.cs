@@ -12,17 +12,15 @@ namespace RPG.Stats {
 
         [System.Serializable]
         public class ProgressionStat {
-            public Stats stat;
+            public Stat stat;
             public float[] levels;
         }
         
         [SerializeField] private ProgressionCharacter[] characterClasses;
 
-        public float GetHealth(CharacterClass characterClass, int level) {
+        public float GetStat(CharacterClass characterClass, Stat stat, int level) {
             return characterClasses.First(p => p.CharacterClass == characterClass)
-                .stats.First(p => p.stat == Stats.Health).levels[level];
+                .stats.First(p => p.stat == stat).levels[level-1];
         }
-        
-        
     }
 }

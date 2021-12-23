@@ -10,7 +10,7 @@ namespace RPG.Attributes {
         public bool IsDead => health == 0;
 
         private void Start() {
-            health = GetComponent<BaseStats>().GetHealth();
+            health = GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
         public void TakeDamage(GameObject instigator, float damage) {
@@ -18,7 +18,7 @@ namespace RPG.Attributes {
             health = Mathf.Max(health - damage, 0);
             if (health == 0) {
                 Experience experience = instigator.GetComponent<Experience>();
-                if (experience) experience.GainExperience(GetComponent<BaseStats>().GetExperienceReward());
+                if (experience) experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
                 Die();
             }
         }
@@ -29,7 +29,7 @@ namespace RPG.Attributes {
         }
 
         public float GetPercentage() {
-            return 100 * health / GetComponent<BaseStats>().GetHealth();
+            return 100 * health / GetComponent<BaseStats>().GetStat(Stat.ExperienceReward);
         }
 
         public object CaptureState() {
