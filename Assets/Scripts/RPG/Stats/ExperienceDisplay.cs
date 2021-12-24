@@ -3,7 +3,7 @@ using UnityEngine.UI;
 
 namespace RPG.Stats {
     public class ExperienceDisplay : MonoBehaviour {
-        [SerializeField] private Text XPvalueText;
+        [SerializeField] private Text xpValueText;
         private Experience xp;
 
         private void Start() {
@@ -11,7 +11,7 @@ namespace RPG.Stats {
         }
 
         private void Update() {
-            XPvalueText.text = $"{xp.ExperiencePoints:0}";
+            xpValueText.text = $"{xp.ExperiencePoints:0}";
         }
     }
 }
