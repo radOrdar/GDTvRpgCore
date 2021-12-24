@@ -2,7 +2,7 @@ using UnityEngine;
 
 namespace RPG.Stats {
     public class BaseStats : MonoBehaviour {
-        [Range(1,99)]
+        [Range(1, 99)]
         [SerializeField] private int startingLevel = 1;
         [SerializeField] CharacterClass characterClass;
         [SerializeField] private Progression progression;
@@ -10,6 +10,10 @@ namespace RPG.Stats {
         private int currentLevel = -1;
 
         private void Start() {
+            if (characterClass == CharacterClass.Player) {
+                print("BaseStats");
+            }
+
             currentLevel = CalculateLevel();
             if (TryGetComponent(out Experience experience)) {
                 experience.onExperienceGained += UpdateLevel;
@@ -20,7 +24,7 @@ namespace RPG.Stats {
             int newLevel = CalculateLevel();
             if (newLevel > currentLevel) {
                 currentLevel = newLevel;
-                print("Levelled up!");   
+                print("Levelled up!");
             }
         }
 
@@ -32,22 +36,25 @@ namespace RPG.Stats {
             if (currentLevel < 1) {
                 currentLevel = CalculateLevel();
             }
+
             return currentLevel;
         }
 
-        public int CalculateLevel() {
+        private int CalculateLevel() {
             if (!TryGetComponent(out Experience experience)) {
                 return startingLevel;
             }
+
             float currentXp = experience.ExperiencePoints;
             int maxLevel = progression.GetMaxLevelForStat(characterClass, Stat.ExperienceToLevelUp);
-            
+
             for (int level = 1; level < maxLevel; level++) {
                 float xpToLevelUp = progression.GetStat(characterClass, Stat.ExperienceToLevelUp, level);
                 if (xpToLevelUp > currentXp) {
                     return level;
                 }
             }
+
             return maxLevel;
         }
     }
