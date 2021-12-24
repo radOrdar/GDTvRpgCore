@@ -5,18 +5,20 @@ using UnityEngine;
 
 namespace RPG.Attributes {
     public class Health : MonoBehaviour, ISaveable {
-        [SerializeField] private float health = 100;
-        
-        public bool IsDead => health == 0;
+        private float healthPoints = -1;
+
+        public bool IsDead => healthPoints == 0;
 
         private void Start() {
-            health = GetComponent<BaseStats>().GetStat(Stat.Health);
+            if (healthPoints < 0) {
+                healthPoints = GetComponent<BaseStats>().GetStat(Stat.Health);
+            }
         }
 
         public void TakeDamage(GameObject instigator, float damage) {
-            if (health == 0) return;
-            health = Mathf.Max(health - damage, 0);
-            if (health == 0) {
+            if (healthPoints == 0) return;
+            healthPoints = Mathf.Max(healthPoints - damage, 0);
+            if (healthPoints == 0) {
                 Experience experience = instigator.GetComponent<Experience>();
                 if (experience) experience.GainExperience(GetComponent<BaseStats>().GetStat(Stat.ExperienceReward));
                 Die();
@@ -29,16 +31,16 @@ namespace RPG.Attributes {
         }
 
         public float GetPercentage() {
-            return 100 * health / GetComponent<BaseStats>().GetStat(Stat.Health);
+            return 100 * healthPoints / GetComponent<BaseStats>().GetStat(Stat.Health);
         }
 
         public object CaptureState() {
-            return health;
+            return healthPoints;
         }
 
         public void RestoreState(object state) {
-            health = (float)state;
-            if (health == 0) {
+            healthPoints = (float)state;
+            if (healthPoints == 0) {
                 Die();
             }
         }
