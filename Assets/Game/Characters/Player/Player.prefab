@@ -152,7 +152,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3122925352220768249, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: startingLevel
-      value: 5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 3122925352220768249, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: characterClass
@@ -224,4 +224,4 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: dfffde78e7514f3abec747063559e753, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  experiencePoints: 0
+  <ExperiencePoints>k__BackingField: 0

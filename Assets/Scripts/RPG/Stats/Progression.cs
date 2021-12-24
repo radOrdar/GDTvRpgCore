@@ -22,7 +22,16 @@ namespace RPG.Stats {
         
         public float GetStat(CharacterClass characterClass, Stat stat, int level) {
             BuildLookup();
-            return lookupTable[characterClass][stat][level - 1];
+            float[] levels = lookupTable[characterClass][stat];
+            if (levels.Length < level - 1) {
+                return levels.Length - 1;
+            }
+            return levels[level - 1];
+        }
+
+        public int GetMaxLevelForStat(CharacterClass characterClass, Stat stat) {
+            BuildLookup();
+            return lookupTable[characterClass][stat].Length + 1;
         }
 
         private void BuildLookup() {

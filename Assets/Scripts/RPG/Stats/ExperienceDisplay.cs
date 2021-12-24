@@ -1,8 +1,8 @@
 using UnityEngine;
 using UnityEngine.UI;
 
-namespace RPG.Attributes {
-    public class XPDisplay : MonoBehaviour {
+namespace RPG.Stats {
+    public class ExperienceDisplay : MonoBehaviour {
         [SerializeField] private Text XPvalueText;
         private Experience xp;
 
