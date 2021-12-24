@@ -11,7 +11,7 @@ namespace RPG.Stats {
         }
 
         private void Update() {
-            levelValueText.text = $"{baseStats.GetLevel()}";
+            levelValueText.text = $"{baseStats.CalculateLevel()}";
         }
     }
 }
