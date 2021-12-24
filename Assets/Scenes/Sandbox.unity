@@ -3331,6 +3331,10 @@ PrefabInstance:
       value: Core
       objectReference: {fileID: 0}
     - target: {fileID: 6519766785903602209, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
+      propertyPath: levelupFx
+      value: 
+      objectReference: {fileID: 198969377575857584, guid: 7098bdbdcde165049872f566c6a00e5f, type: 3}
+    - target: {fileID: 6519766785903602209, guid: a6846d07e2fb6a942b9b49cbb7f8e19d, type: 3}
       propertyPath: startingLevel
       value: 1
       objectReference: {fileID: 0}
