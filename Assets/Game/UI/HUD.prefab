@@ -11,6 +11,7 @@ GameObject:
   - component: {fileID: 3265950412834648907}
   - component: {fileID: 7195379678484295211}
   - component: {fileID: 6526411354795023998}
+  - component: {fileID: 5566764771940537376}
   m_Layer: 5
   m_Name: Enemy Health value
   m_TagString: Untagged
@@ -34,8 +35,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 148.31, y: -64.5}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_AnchoredPosition: {x: 147, y: -64}
+  m_SizeDelta: {x: 199.8064, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7195379678484295211
 CanvasRenderer:
@@ -79,6 +80,20 @@ MonoBehaviour:
     m_VerticalOverflow: 0
     m_LineSpacing: 1
   m_Text: 100%
+--- !u!114 &5566764771940537376
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5218831221296753498}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: adc8e772c2464912bec332991b740e42, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  healthValueText: {fileID: 6526411354795023998}
+  maxHealthValueText: {fileID: 0}
 --- !u!1 &5378724850927196719
 GameObject:
   m_ObjectHideFlags: 0
@@ -113,8 +128,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15, y: -64.50006}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_AnchoredPosition: {x: 15, y: -64.00006}
+  m_SizeDelta: {x: 129.0268, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &9091616387253440679
 CanvasRenderer:
@@ -193,7 +208,7 @@ RectTransform:
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
   m_AnchoredPosition: {x: 15, y: -15}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_SizeDelta: {x: 129.0268, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &3547128061724779368
 CanvasRenderer:
@@ -272,8 +287,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 148.31, y: -163.5}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_AnchoredPosition: {x: 147, y: -165}
+  m_SizeDelta: {x: 199.8064, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7017821577428249496
 CanvasRenderer:
@@ -364,8 +379,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15, y: -114.29999}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_AnchoredPosition: {x: 15, y: -116}
+  m_SizeDelta: {x: 129.0268, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &2884091061578194671
 CanvasRenderer:
@@ -444,8 +459,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 148.31, y: -15}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_AnchoredPosition: {x: 147, y: -15}
+  m_SizeDelta: {x: 199.8064, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &7861622436005894068
 CanvasRenderer:
@@ -502,6 +517,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   healthValueText: {fileID: 8252508630112223244}
+  maxHealthValueText: {fileID: 0}
 --- !u!1 &7306384771349388883
 GameObject:
   m_ObjectHideFlags: 0
@@ -536,8 +552,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 15, y: -163.5}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_AnchoredPosition: {x: 15, y: -165}
+  m_SizeDelta: {x: 129.0268, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &369914994588273995
 CanvasRenderer:
@@ -705,8 +721,8 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: 148.31, y: -114.3}
-  m_SizeDelta: {x: 133.3053, y: 47.4348}
+  m_AnchoredPosition: {x: 147, y: -116}
+  m_SizeDelta: {x: 199.8064, y: 47.4348}
   m_Pivot: {x: 0, y: 1}
 --- !u!222 &4699730695069859555
 CanvasRenderer:

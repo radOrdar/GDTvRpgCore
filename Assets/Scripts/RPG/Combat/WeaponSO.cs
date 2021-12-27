@@ -32,12 +32,12 @@ namespace RPG.Combat {
             return null;
         }
 
-        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator) {
+        public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float calculatedDamage) {
             if (!projectilePrefab) return;
             Projectile projectile = Instantiate(projectilePrefab,
                 isRightHanded ? rightHand.position : leftHand.position,
                 Quaternion.identity);
-            projectile.SetTarget(target, weaponDamage, instigator);
+            projectile.SetTarget(target, calculatedDamage, instigator);
         }
     }
 }
