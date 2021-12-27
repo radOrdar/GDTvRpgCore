@@ -104,9 +104,15 @@ namespace RPG.Combat {
             EquipWeapon(Resources.Load<WeaponSO>((string)state));
         }
 
-        public IEnumerable<float> GetAdditiveModifier(Stat stat) {
+        public IEnumerable<float> GetAdditiveModifiers(Stat stat) {
             if (stat == Stat.Damage) {
                 yield return currentWeaponSO.WeaponDamage;
+            }
+        }
+
+        public IEnumerable<float> GetPercentageModifiers(Stat stat) {
+            if (stat == Stat.Damage) {
+                yield return currentWeaponSO.PercentageBonus;
             }
         }
     }

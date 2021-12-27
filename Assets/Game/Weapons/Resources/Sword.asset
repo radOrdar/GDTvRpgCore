@@ -18,3 +18,5 @@ MonoBehaviour:
   weaponRange: 3
   timeBetweenAttacks: 2
   weaponDamage: 10
+  percentageBonus: 10
+  projectilePrefab: {fileID: 0}

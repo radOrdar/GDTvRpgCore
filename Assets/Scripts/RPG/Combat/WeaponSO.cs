@@ -11,11 +11,14 @@ namespace RPG.Combat {
         [SerializeField] private float weaponRange = 2f;
         [SerializeField] private float timeBetweenAttacks = 2f;
         [SerializeField] private float weaponDamage = 5f;
+        [SerializeField] private float percentageBonus = 0;
         [SerializeField] private Projectile projectilePrefab = null;
         public float WeaponDamage => weaponDamage;
         public float TimeBetweenAttacks => timeBetweenAttacks;
         public float WeaponRange => weaponRange;
         public bool HasProjectile => projectilePrefab != null;
+        public float PercentageBonus => percentageBonus;
+
 
         public GameObject Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator) {
             if (weaponOverride) {
