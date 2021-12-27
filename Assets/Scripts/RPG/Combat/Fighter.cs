@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using RPG.Attributes;
 using RPG.Core;
 using RPG.Movement;
@@ -6,13 +7,13 @@ using RPG.Stats;
 using UnityEngine;
 
 namespace RPG.Combat {
-    public class Fighter : MonoBehaviour, IAction, ISaveable {
+    public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider {
         [SerializeField] private Transform rightHandTransform;
         [SerializeField] private Transform leftHandTransform;
         [SerializeField] private WeaponSO defaultWeapon;
 
         private WeaponSO currentWeaponSO;
-        private GameObject currentWeaponInstance;
+        private GameObject currentWeaponModel;
         private Mover mover;
 
         public Health Target { get; private set; }
@@ -23,13 +24,13 @@ namespace RPG.Combat {
         }
 
         private void Start() {
-            if(currentWeaponInstance == null) EquipWeapon(defaultWeapon);
+            if(currentWeaponModel == null) EquipWeapon(defaultWeapon);
         }
 
         public void EquipWeapon(WeaponSO weapon) {
             if (weapon && rightHandTransform) {
-                Destroy(currentWeaponInstance);
-                currentWeaponInstance = weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+                Destroy(currentWeaponModel);
+                currentWeaponModel = weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
                 currentWeaponSO = weapon;
             }
         }
@@ -101,6 +102,12 @@ namespace RPG.Combat {
 
         public void RestoreState(object state) {
             EquipWeapon(Resources.Load<WeaponSO>((string)state));
+        }
+
+        public IEnumerable<float> GetAdditiveModifier(Stat stat) {
+            if (stat == Stat.Damage) {
+                yield return currentWeaponSO.WeaponDamage;
+            }
         }
     }
 }
