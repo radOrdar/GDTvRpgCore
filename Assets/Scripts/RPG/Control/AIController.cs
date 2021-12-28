@@ -1,3 +1,4 @@
+using GameDevTV.Utils;
 using RPG.Attributes;
 using RPG.Control;
 using RPG.Core;
@@ -18,7 +19,7 @@ namespace RPG.Combat {
         private Health health;
         private Mover mover;
 
-        private Vector3 guardPosition;
+        private LazyValue<Vector3> guardPosition;
         private float timeSinceLastSawPlayer = Mathf.Infinity;
         private float timeSinceArrivedToWaypoint = 0;
         private int currentWaypointIndex = 0;
@@ -28,11 +29,13 @@ namespace RPG.Combat {
             fighter = GetComponent<Fighter>();
             mover = GetComponent<Mover>();
             player = GameObject.FindWithTag("Player");
+
+            guardPosition = new LazyValue<Vector3>(() => transform.position);
         }
 
         //transfrom is a gameobject and may not be initialized when called in Awake() ??? 
         private void Start() {
-            guardPosition = transform.position;
+            guardPosition.ForceInit(); 
         }
 
         private void Update() {
@@ -58,7 +61,7 @@ namespace RPG.Combat {
         }
 
         private void PatrolBehaviour() {
-            Vector3 nextPosition = guardPosition;
+            Vector3 nextPosition = guardPosition.value;
             mover.Speed = patrolSpeed;
             
             if (patrolPath != null) {
