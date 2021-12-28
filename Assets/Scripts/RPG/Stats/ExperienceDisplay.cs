@@ -6,7 +6,7 @@ namespace RPG.Stats {
         [SerializeField] private Text xpValueText;
         private Experience xp;
 
-        private void Start() {
+        private void Awake() {
             xp = GameObject.FindWithTag("Player").GetComponent<Experience>();
         }
 

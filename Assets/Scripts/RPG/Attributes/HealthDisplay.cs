@@ -7,7 +7,7 @@ namespace RPG.Attributes {
         
         private Health health;
 
-        private void Start() {
+        private void Awake() {
             var player = GameObject.FindWithTag("Player");
             health = player.GetComponent<Health>();
         }

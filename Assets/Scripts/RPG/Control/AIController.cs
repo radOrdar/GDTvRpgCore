@@ -23,11 +23,15 @@ namespace RPG.Combat {
         private float timeSinceArrivedToWaypoint = 0;
         private int currentWaypointIndex = 0;
 
-        private void Start() {
+        private void Awake() {
             health = GetComponent<Health>();
             fighter = GetComponent<Fighter>();
             mover = GetComponent<Mover>();
             player = GameObject.FindWithTag("Player");
+        }
+
+        //transfrom is a gameobject and may not be initialized when called in Awake() ??? 
+        private void Start() {
             guardPosition = transform.position;
         }
 

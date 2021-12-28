@@ -65,7 +65,7 @@ PrefabInstance:
       objectReference: {fileID: 2100000, guid: bfbe2e8b331e2cc42be1591f949c0e41, type: 2}
     - target: {fileID: 5349348054876842013, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
       propertyPath: chaseRange
-      value: 20
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 7222166071685049890, guid: 4756119e3393fd449ba6923507e8e8ab, type: 3}
       propertyPath: m_Name

@@ -10,10 +10,13 @@ namespace RPG.Control {
         private Fighter fighter;
         private Health health;
 
-        private void Start() {
+        private void Awake() {
             health = GetComponent<Health>();
             mover = GetComponent<Mover>();
             fighter = GetComponent<Fighter>();
+        }
+
+        private void Start() {
             mainCamera = Camera.main;
         }
 
