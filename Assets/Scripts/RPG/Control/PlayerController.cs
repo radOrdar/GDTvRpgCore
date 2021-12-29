@@ -48,7 +48,7 @@ namespace RPG.Control {
         }
 
         private bool InteractWithComponent() {
-            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay()).OrderBy(hit => hit.distance).ToArray();
             foreach (RaycastHit hit in hits) {
                 foreach (IRaycastable raycastable in hit.transform.GetComponents<IRaycastable>()) {
                     if (raycastable.HandleRaycast(this)) {
@@ -60,7 +60,7 @@ namespace RPG.Control {
 
             return false;
         }
-
+        
         private bool InteractWithMovement() {
             Ray ray = GetMouseRay();
             if (Physics.Raycast(ray, out RaycastHit hit)) {
