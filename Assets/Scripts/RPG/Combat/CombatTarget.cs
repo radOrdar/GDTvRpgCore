@@ -18,5 +18,9 @@ namespace RPG.Combat {
 
             return false;
         }
+
+        public CursorType GetCursorType() {
+            return CursorType.Combat;
+        }
     }
 }

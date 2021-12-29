@@ -8,12 +8,6 @@ using UnityEngine.EventSystems;
 
 namespace RPG.Control {
     public class PlayerController : MonoBehaviour {
-        enum CursorType {
-            None = 0,
-            Movement = 1,
-            Combat = 2,
-            UI = 3
-        }
 
         [Serializable]
         struct CursorMapping {
@@ -58,7 +52,7 @@ namespace RPG.Control {
             foreach (RaycastHit hit in hits) {
                 foreach (IRaycastable raycastable in hit.transform.GetComponents<IRaycastable>()) {
                     if (raycastable.HandleRaycast(this)) {
-                        SetCursor(CursorType.Combat);
+                        SetCursor(raycastable.GetCursorType());
                         return true;
                     }
                 }
