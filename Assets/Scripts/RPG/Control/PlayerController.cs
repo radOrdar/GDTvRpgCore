@@ -47,25 +47,20 @@ namespace RPG.Control {
                 return;
             }
 
-            if (InteractWithCombat()) return;
+            if (InteractWithComponent()) return;
             if (InteractWithMovement()) return;
 
             SetCursor(CursorType.None);
         }
 
-        private bool InteractWithCombat() {
-            RaycastHit[] hits = Physics.RaycastAll(ScreenPointToRay());
+        private bool InteractWithComponent() {
+            RaycastHit[] hits = Physics.RaycastAll(GetMouseRay());
             foreach (RaycastHit hit in hits) {
-                CombatTarget combatTarget = hit.transform.GetComponent<CombatTarget>();
-                if (combatTarget == null) continue;
-                if (fighter.CanAttack(combatTarget.gameObject)) {
-                    if (Input.GetMouseButton(0)) {
-                        fighter.Attack(combatTarget.gameObject);
+                foreach (IRaycastable raycastable in hit.transform.GetComponents<IRaycastable>()) {
+                    if (raycastable.HandleRaycast(this)) {
+                        SetCursor(CursorType.Combat);
+                        return true;
                     }
-
-                    SetCursor(CursorType.Combat);
-
-                    return true;
                 }
             }
 
@@ -73,7 +68,7 @@ namespace RPG.Control {
         }
 
         private bool InteractWithMovement() {
-            Ray ray = ScreenPointToRay();
+            Ray ray = GetMouseRay();
             if (Physics.Raycast(ray, out RaycastHit hit)) {
                 if (Input.GetMouseButton(0)) {
                     mover.StartMoveAction(hit.point);
@@ -101,7 +96,7 @@ namespace RPG.Control {
             Cursor.SetCursor(mapping.texture, mapping.hotspot, CursorMode.Auto);
         }
 
-        private Ray ScreenPointToRay() {
+        private Ray GetMouseRay() {
             return mainCamera.ScreenPointToRay(Input.mousePosition);
         }
     }
