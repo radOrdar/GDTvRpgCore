@@ -3,10 +3,12 @@ using RPG.Core;
 using RPG.Saving;
 using RPG.Stats;
 using UnityEngine;
+using UnityEngine.Events;
 
 namespace RPG.Attributes {
     public class Health : MonoBehaviour, ISaveable {
         [SerializeField] private float levelupRegenPercentage = 70;
+        [SerializeField] private UnityEvent<float> takeDamage;
 
         private LazyValue<float> healthPoints;
         public bool IsDead => healthPoints.value <= 0;
@@ -36,6 +38,7 @@ namespace RPG.Attributes {
             
             if (healthPoints.value == 0) return;
             healthPoints.value = Mathf.Max(healthPoints.value - damage, 0);
+            takeDamage?.Invoke(damage);
             if (healthPoints.value == 0) {
                 Experience experience = instigator.GetComponent<Experience>();
                 if (experience) experience.GainExperience(baseStats.GetStat(Stat.ExperienceReward));
