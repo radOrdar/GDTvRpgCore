@@ -139,7 +139,9 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2f1f569a77fb4a98bff171799530d517, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  health: {fileID: 0}
   foreground: {fileID: 5157618431458987178}
+  rootCanvas: {fileID: 1789084661385420763}
 --- !u!1 &3346150330854511712
 GameObject:
   m_ObjectHideFlags: 0
