@@ -51,7 +51,7 @@ namespace RPG.Attributes {
             GetComponent<ActionScheduler>().CancelCurrentAction();
         }
 
-        public float GetPercentage() => 100 * healthPoints.value / GetComponent<BaseStats>().GetStat(Stat.Health);
+        public float GetPercentage() => 100 * healthPoints.value / baseStats.GetStat(Stat.Health);
 
         public float GetMaxHealth() => baseStats.GetStat(Stat.Health);
 
