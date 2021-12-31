@@ -6,7 +6,7 @@ namespace RPG.UI.DamageText {
 
         public void Spawn(float damage) {
             DamageText damageTextInstance = Instantiate(damageText, transform);
-            damageTextInstance.Init(damage.ToString());
+            damageTextInstance.Init($"{damage:0}");
         }
     }
 }
