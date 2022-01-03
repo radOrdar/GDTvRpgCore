@@ -29,10 +29,10 @@ namespace RPG.Combat {
                     animator.runtimeAnimatorController = animatorOverride.runtimeAnimatorController;
                 }
             }
-            if (equippedPrefab)
-                return Instantiate(equippedPrefab,
-                    isRightHanded ? rightHandTransform : leftHandTransform);
-            return null;
+
+            Weapon equippedWeapon = null;
+            if (equippedPrefab) equippedWeapon = Instantiate(equippedPrefab, isRightHanded ? rightHandTransform : leftHandTransform);
+            return equippedWeapon;
         }
 
         public void LaunchProjectile(Transform rightHand, Transform leftHand, Health target, GameObject instigator, float calculatedDamage) {

@@ -13,8 +13,8 @@ namespace RPG.Combat {
         [SerializeField] private Transform leftHandTransform;
         [SerializeField] private WeaponConfigSO defaultWeaponConfig;
 
-        private LazyValue<WeaponConfigSO> currentWeapon;
-        private Weapon currentWeaponModel;
+        private LazyValue<WeaponConfigSO> currentWeaponConfig;
+        private Weapon equippedWeapon;
         private Mover mover;
 
         public Health Target { get; private set; }
@@ -22,20 +22,20 @@ namespace RPG.Combat {
 
         private void Awake() {
             mover = GetComponent<Mover>();
-            currentWeapon = new LazyValue<WeaponConfigSO>(() => AttachWeapon(defaultWeaponConfig));
+            currentWeaponConfig = new LazyValue<WeaponConfigSO>(() => AttachWeapon(defaultWeaponConfig));
         }
 
         private void Start() {
-           currentWeapon.ForceInit();
+           currentWeaponConfig.ForceInit();
         }
 
         public void EquipWeapon(WeaponConfigSO weaponConfig) {
-            currentWeapon.value = AttachWeapon(weaponConfig);
+            currentWeaponConfig.value = AttachWeapon(weaponConfig);
         }
 
         private WeaponConfigSO AttachWeapon(WeaponConfigSO weaponConfig) {
-            if(currentWeaponModel) Destroy(currentWeaponModel.gameObject);
-            currentWeaponModel = weaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+            if(equippedWeapon) Destroy(equippedWeapon.gameObject);
+            equippedWeapon = weaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
             return weaponConfig;
         }
 
@@ -55,11 +55,11 @@ namespace RPG.Combat {
                 AttackingBehaviour();
             }
 
-            bool InRange() => Vector3.SqrMagnitude(Target.transform.position - transform.position) < currentWeapon.value.WeaponRange * currentWeapon.value.WeaponRange;
+            bool InRange() => Vector3.SqrMagnitude(Target.transform.position - transform.position) < currentWeaponConfig.value.WeaponRange * currentWeaponConfig.value.WeaponRange;
         }
 
         private void AttackingBehaviour() {
-            if (timeSinceLastAttack >= currentWeapon.value.TimeBetweenAttacks) {
+            if (timeSinceLastAttack >= currentWeaponConfig.value.TimeBetweenAttacks) {
                 timeSinceLastAttack = 0;
                 transform.LookAt(Target.transform);
                 GetComponent<Animator>().ResetTrigger("stopAttack");
@@ -77,8 +77,9 @@ namespace RPG.Combat {
         void Hit() {
             if (Target == null) return;
             float damage = GetComponent<BaseStats>().GetStat(Stat.Damage);
-            if (currentWeapon.value.HasProjectile) {
-                currentWeapon.value.LaunchProjectile(rightHandTransform, leftHandTransform, Target, gameObject, damage);
+            if (equippedWeapon) equippedWeapon.OnHit();
+            if (currentWeaponConfig.value.HasProjectile) {
+                currentWeaponConfig.value.LaunchProjectile(rightHandTransform, leftHandTransform, Target, gameObject, damage);
             } else {
                 Target.TakeDamage(gameObject, damage);
             }
@@ -101,7 +102,7 @@ namespace RPG.Combat {
         }
 
         public object CaptureState() {
-            return currentWeapon.value.name;
+            return currentWeaponConfig.value.name;
         }
 
         public void RestoreState(object state) {
@@ -110,13 +111,13 @@ namespace RPG.Combat {
 
         public IEnumerable<float> GetAdditiveModifiers(Stat stat) {
             if (stat == Stat.Damage) {
-                yield return currentWeapon.value.WeaponDamage;
+                yield return currentWeaponConfig.value.WeaponDamage;
             }
         }
 
         public IEnumerable<float> GetPercentageModifiers(Stat stat) {
             if (stat == Stat.Damage) {
-                yield return currentWeapon.value.PercentageBonus;
+                yield return currentWeaponConfig.value.PercentageBonus;
             }
         }
     }
