@@ -3,8 +3,8 @@ using UnityEngine;
 
 namespace RPG.Combat {
     [CreateAssetMenu(fileName = "Weapon", menuName = "Weapons/Make New Weapon", order = 0)]
-    public class WeaponSO : ScriptableObject {
-        [SerializeField] private GameObject equippedPrefab;
+    public class WeaponConfigSO : ScriptableObject {
+        [SerializeField] private Weapon equippedPrefab;
         [SerializeField] private AnimatorOverrideController weaponOverride;
         [SerializeField] private bool isRightHanded = true;
 
@@ -20,7 +20,7 @@ namespace RPG.Combat {
         public float PercentageBonus => percentageBonus;
 
 
-        public GameObject Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator) {
+        public Weapon Spawn(Transform rightHandTransform, Transform leftHandTransform, Animator animator) {
             if (weaponOverride) {
                 animator.runtimeAnimatorController = weaponOverride;
             } else {

@@ -11,10 +11,10 @@ namespace RPG.Combat {
     public class Fighter : MonoBehaviour, IAction, ISaveable, IModifierProvider {
         [SerializeField] private Transform rightHandTransform;
         [SerializeField] private Transform leftHandTransform;
-        [SerializeField] private WeaponSO defaultWeapon;
+        [SerializeField] private WeaponConfigSO defaultWeaponConfig;
 
-        private LazyValue<WeaponSO> currentWeapon;
-        private GameObject currentWeaponModel;
+        private LazyValue<WeaponConfigSO> currentWeapon;
+        private Weapon currentWeaponModel;
         private Mover mover;
 
         public Health Target { get; private set; }
@@ -22,21 +22,21 @@ namespace RPG.Combat {
 
         private void Awake() {
             mover = GetComponent<Mover>();
-            currentWeapon = new LazyValue<WeaponSO>(() => AttachWeapon(defaultWeapon));
+            currentWeapon = new LazyValue<WeaponConfigSO>(() => AttachWeapon(defaultWeaponConfig));
         }
 
         private void Start() {
            currentWeapon.ForceInit();
         }
 
-        public void EquipWeapon(WeaponSO weapon) {
-            currentWeapon.value = AttachWeapon(weapon);
+        public void EquipWeapon(WeaponConfigSO weaponConfig) {
+            currentWeapon.value = AttachWeapon(weaponConfig);
         }
 
-        private WeaponSO AttachWeapon(WeaponSO weapon) {
-            Destroy(currentWeaponModel);
-            currentWeaponModel = weapon.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
-            return weapon;
+        private WeaponConfigSO AttachWeapon(WeaponConfigSO weaponConfig) {
+            if(currentWeaponModel) Destroy(currentWeaponModel.gameObject);
+            currentWeaponModel = weaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+            return weaponConfig;
         }
 
         private void Update() {
@@ -105,7 +105,7 @@ namespace RPG.Combat {
         }
 
         public void RestoreState(object state) {
-            EquipWeapon(Resources.Load<WeaponSO>((string)state));
+            EquipWeapon(Resources.Load<WeaponConfigSO>((string)state));
         }
 
         public IEnumerable<float> GetAdditiveModifiers(Stat stat) {

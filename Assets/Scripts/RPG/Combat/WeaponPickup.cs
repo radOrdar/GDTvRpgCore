@@ -1,11 +1,13 @@
 using System.Collections;
 using RPG.Control;
 using UnityEngine;
+using UnityEngine.Serialization;
 
 namespace RPG.Combat {
     public class WeaponPickup : MonoBehaviour, IRaycastable {
         [SerializeField] private float hideTime = 5f;
-        [SerializeField] private WeaponSO weaponSo;
+        [FormerlySerializedAs("weaponSo")]
+        [SerializeField] private WeaponConfigSO weaponConfigSo;
 
         private Collider myCollider;
 
@@ -20,7 +22,7 @@ namespace RPG.Combat {
         }
 
         private void Pickup(Fighter fighter) {
-            fighter.EquipWeapon(weaponSo);
+            fighter.EquipWeapon(weaponConfigSo);
             StartCoroutine(HideRoutine());
         }
 
