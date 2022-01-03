@@ -9,7 +9,7 @@ namespace RPG.Core {
             mainCamera = Camera.main;
         }
 
-        private void Update() {
+        private void LateUpdate() {
             transform.LookAt(mainCamera.transform.position);
         }
     }
