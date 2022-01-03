@@ -9,6 +9,7 @@ namespace RPG.Attributes {
     public class Health : MonoBehaviour, ISaveable {
         [SerializeField] private float levelupRegenPercentage = 70;
         [SerializeField] private UnityEvent<float> takeDamage;
+        [SerializeField] private UnityEvent OnDie;
 
         private LazyValue<float> healthPoints;
         public bool IsDead => healthPoints.value <= 0;
@@ -46,11 +47,6 @@ namespace RPG.Attributes {
             }
         }
 
-        private void Die() {
-            GetComponent<Animator>().SetTrigger("death");
-            GetComponent<ActionScheduler>().CancelCurrentAction();
-        }
-
         public float GetPercentage() => 100 * healthPoints.value / baseStats.GetStat(Stat.Health);
 
         public float GetMaxHealth() => baseStats.GetStat(Stat.Health);
@@ -62,6 +58,12 @@ namespace RPG.Attributes {
             if (healthPoints.value == 0) {
                 Die();
             }
+        }
+        
+        private void Die() {
+            GetComponent<Animator>().SetTrigger("death");
+            GetComponent<ActionScheduler>().CancelCurrentAction();
+            OnDie.Invoke();
         }
     }
 }
