@@ -35,7 +35,7 @@ namespace RPG.Combat {
 
         private WeaponConfigSO AttachWeapon(WeaponConfigSO weaponConfig) {
             if(equippedWeapon) Destroy(equippedWeapon.gameObject);
-            equippedWeapon = weaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());
+            if(weaponConfig){ equippedWeapon = weaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());}
             return weaponConfig;
         }
 

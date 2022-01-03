@@ -267,7 +267,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   rightHandTransform: {fileID: 0}
   leftHandTransform: {fileID: 0}
-  defaultWeapon: {fileID: 0}
+  defaultWeaponConfig: {fileID: 11400000, guid: afd5c4ff95b4d594a8cef922b4365c8d, type: 2}
 --- !u!114 &7678575623016983940
 MonoBehaviour:
   m_ObjectHideFlags: 0

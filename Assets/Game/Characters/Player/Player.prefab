@@ -106,6 +106,14 @@ PrefabInstance:
       propertyPath: timeBetweenAttacks
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: -5341199593250607187, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
+      propertyPath: defaultWeaponConfig
+      value: 
+      objectReference: {fileID: 11400000, guid: 5836be5ec480fc24e9e339187f797244, type: 2}
+    - target: {fileID: 611900018314167577, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
+      propertyPath: m_RootOrder
+      value: 2
+      objectReference: {fileID: 0}
     - target: {fileID: 1638452723583334122, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: m_RootOrder
       value: 0
@@ -164,6 +172,10 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 3122925352220768249, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
       propertyPath: shouldUseModifier
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 4095341522161331335, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
+      propertyPath: m_RootOrder
       value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 4576495695829251710, guid: 8c7a3fc36e9a92842bd8ab642830869d, type: 3}
