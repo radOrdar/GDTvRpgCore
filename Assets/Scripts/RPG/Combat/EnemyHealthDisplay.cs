@@ -14,7 +14,7 @@ namespace RPG.Combat {
 
         private void Update() {
             Health targetHealth = playerFighter.Target;
-            healthValueText.text = targetHealth ? $"{targetHealth.GetPercentage():0}%/{targetHealth.GetMaxHealth()}" : defaultHealthText;
+            healthValueText.text = targetHealth ? $"{targetHealth.HealthPoints:0}/{targetHealth.GetMaxHealth()}" : defaultHealthText;
         }
     }
 }

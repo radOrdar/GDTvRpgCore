@@ -12,6 +12,7 @@ namespace RPG.Attributes {
         [SerializeField] private UnityEvent OnDie;
 
         private LazyValue<float> healthPoints;
+        public float HealthPoints => healthPoints.value; 
         public bool IsDead => healthPoints.value <= 0;
 
         private BaseStats baseStats;
@@ -64,6 +65,10 @@ namespace RPG.Attributes {
             GetComponent<Animator>().SetTrigger("death");
             GetComponent<ActionScheduler>().CancelCurrentAction();
             OnDie.Invoke();
+        }
+
+        public void Heal(float healthToRestore) {
+            healthPoints.value = Mathf.Min(healthPoints.value + healthToRestore, GetMaxHealth());
         }
     }
 }
