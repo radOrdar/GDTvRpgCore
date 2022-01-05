@@ -26,7 +26,7 @@ namespace RPG.Combat {
         }
 
         private void Start() {
-           currentWeaponConfig.ForceInit();
+            currentWeaponConfig.ForceInit();
         }
 
         public void EquipWeapon(WeaponConfigSO weaponConfig) {
@@ -34,8 +34,9 @@ namespace RPG.Combat {
         }
 
         private WeaponConfigSO AttachWeapon(WeaponConfigSO weaponConfig) {
-            if(equippedWeapon) Destroy(equippedWeapon.gameObject);
-            if(weaponConfig){ equippedWeapon = weaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>());}
+            if (equippedWeapon) Destroy(equippedWeapon.gameObject);
+            if (weaponConfig) { equippedWeapon = weaponConfig.Spawn(rightHandTransform, leftHandTransform, GetComponent<Animator>()); }
+
             return weaponConfig;
         }
 
@@ -69,6 +70,7 @@ namespace RPG.Combat {
 
         public bool CanAttack(GameObject combatTarget) {
             if (combatTarget == null) return false;
+            if (!mover.CanMove(combatTarget.transform.position)) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead;
         }

@@ -16,7 +16,6 @@ namespace RPG.Control {
             public Vector2 hotspot;
         }
 
-        [SerializeField] private float maxNavmeshPathLength = 15f;
         [SerializeField] private CursorMapping[] cursorMappings;
 
         private Mover mover;
@@ -63,16 +62,16 @@ namespace RPG.Control {
         }
 
         private bool InteractWithMovement() {
-            if (RaycastNavMesh(out Vector3 target)) {
-                if (Input.GetMouseButton(0)) {
-                    mover.StartMoveAction(target);
-                }
-
-                SetCursor(CursorType.Movement);
-                return true;
+            if (!RaycastNavMesh(out Vector3 target)) return false;
+            if (!mover.CanMove(target)) return false;
+            
+            SetCursor(CursorType.Movement);
+            
+            if (Input.GetMouseButton(0)) {
+                mover.StartMoveAction(target);
             }
 
-            return false;
+            return true;
         }
 
         private bool RaycastNavMesh(out Vector3 target) {
@@ -82,24 +81,7 @@ namespace RPG.Control {
                 !NavMesh.SamplePosition(hit.point, out NavMeshHit navMeshHit, .5f, NavMesh.AllAreas)) return false;
 
             target = navMeshHit.position;
-
-            NavMeshPath navMeshPath = new NavMeshPath();
-            if (!NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, navMeshPath) ||
-                navMeshPath.status != NavMeshPathStatus.PathComplete) return false;
-            
-            if (CalculatePathLength(navMeshPath) > maxNavmeshPathLength) return false;
-            
             return true;
-        }
-
-        private float CalculatePathLength(NavMeshPath navMeshPath) {
-            Vector3 accumulator = Vector3.zero;
-            Vector3[] corners = navMeshPath.corners;
-            for (int i = 1; i < corners.Length; i++) {
-                accumulator += corners[i] - corners[i - 1];
-            }
-
-            return accumulator.magnitude;
         }
 
         private bool InteractWithUI() {

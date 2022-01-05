@@ -6,6 +6,8 @@ using UnityEngine.AI;
 
 namespace RPG.Movement {
     public class Mover : MonoBehaviour, IAction, ISaveable {
+        [SerializeField] private float maxNavmeshPathLength = 15f;
+        
         private NavMeshAgent navMeshAgent;
         private Animator animator;
         private Health health;
@@ -30,6 +32,26 @@ namespace RPG.Movement {
             UpdateAnimator();
         }
 
+        public bool CanMove(Vector3 target) {
+            NavMeshPath navMeshPath = new NavMeshPath();
+            if (!NavMesh.CalculatePath(transform.position, target, NavMesh.AllAreas, navMeshPath) ||
+                navMeshPath.status != NavMeshPathStatus.PathComplete) return false;
+            
+            if (CalculatePathLength(navMeshPath) > maxNavmeshPathLength) return false;
+            
+            return true;
+        }
+
+        private float CalculatePathLength(NavMeshPath navMeshPath) {
+            Vector3 accumulator = Vector3.zero;
+            Vector3[] corners = navMeshPath.corners;
+            for (int i = 1; i < corners.Length; i++) {
+                accumulator += corners[i] - corners[i - 1];
+            }
+
+            return accumulator.magnitude;
+        }
+        
         private void UpdateAnimator() {
             animator.SetFloat("forwardSpeed", navMeshAgent.velocity.magnitude);
         }
