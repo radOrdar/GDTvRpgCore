@@ -9,6 +9,7 @@ namespace RPG.Combat {
     public class AIController : MonoBehaviour {
         [SerializeField] private float chaseRange = 5f;
         [SerializeField] private float suspicionDuration = 1f;
+        [SerializeField] private float aggroDuration = 3f;
         [SerializeField] private float dwellDuration = 1f;
         [SerializeField] private PatrolPath patrolPath;
         [SerializeField] private float patrolSpeed = 3;
@@ -22,6 +23,7 @@ namespace RPG.Combat {
         private LazyValue<Vector3> guardPosition;
         private float timeSinceLastSawPlayer = Mathf.Infinity;
         private float timeSinceArrivedToWaypoint = 0;
+        private float timeSinceAggrevated = Mathf.Infinity;
         private int currentWaypointIndex = 0;
 
         private void Awake() {
@@ -35,7 +37,7 @@ namespace RPG.Combat {
 
         //transfrom is a gameobject and may not be initialized when called in Awake() ??? 
         private void Start() {
-            guardPosition.ForceInit(); 
+            guardPosition.ForceInit();
         }
 
         private void Update() {
@@ -44,26 +46,37 @@ namespace RPG.Combat {
                 return;
             }
 
-            if (Vector3.Distance(transform.position, player.transform.position) < chaseRange) {
+            if (IsAggrevated() && fighter.CanAttack(player)) {
                 timeSinceLastSawPlayer = 0;
-                if (fighter.CanAttack(player)) {
-                    mover.Speed = chaseSpeed;
-                    fighter.Attack(player);
-                }
+                mover.Speed = chaseSpeed;
+                fighter.Attack(player);
             } else if (timeSinceLastSawPlayer < suspicionDuration) {
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             } else {
                 PatrolBehaviour();
             }
 
+            UpdateTimers();
+        }
+        
+        public void Aggrevate() {
+            timeSinceAggrevated = 0;
+        }
+
+        private void UpdateTimers() {
             timeSinceLastSawPlayer += Time.deltaTime;
             timeSinceArrivedToWaypoint += Time.deltaTime;
+            timeSinceAggrevated += Time.deltaTime;
+        }
+
+        private bool IsAggrevated() {
+            return Vector3.Distance(transform.position, player.transform.position) < chaseRange || timeSinceAggrevated < aggroDuration;
         }
 
         private void PatrolBehaviour() {
             Vector3 nextPosition = guardPosition.value;
             mover.Speed = patrolSpeed;
-            
+
             if (patrolPath != null) {
                 if (AtWayPoint()) {
                     timeSinceArrivedToWaypoint = 0f;
