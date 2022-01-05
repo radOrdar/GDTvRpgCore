@@ -14,6 +14,7 @@ namespace RPG.Combat {
         [SerializeField] private PatrolPath patrolPath;
         [SerializeField] private float patrolSpeed = 3;
         [SerializeField] private float chaseSpeed = 5;
+        [SerializeField] private float aggrevateNearbyEnemiesRadius = 5;
 
         private Fighter fighter;
         private GameObject player;
@@ -40,6 +41,7 @@ namespace RPG.Combat {
             guardPosition.ForceInit();
         }
 
+        //what about state machine? ?? ? 
         private void Update() {
             if (health.IsDead) {
                 enabled = false;
@@ -47,9 +49,7 @@ namespace RPG.Combat {
             }
 
             if (IsAggrevated() && fighter.CanAttack(player)) {
-                timeSinceLastSawPlayer = 0;
-                mover.Speed = chaseSpeed;
-                fighter.Attack(player);
+                AttackBehaviour();
             } else if (timeSinceLastSawPlayer < suspicionDuration) {
                 GetComponent<ActionScheduler>().CancelCurrentAction();
             } else {
@@ -58,7 +58,24 @@ namespace RPG.Combat {
 
             UpdateTimers();
         }
-        
+
+        private void AttackBehaviour() {
+            timeSinceLastSawPlayer = 0;
+            mover.Speed = chaseSpeed;
+            fighter.Attack(player);
+            AggrevateNearbyEnemies();
+        }
+
+        private void AggrevateNearbyEnemies() {
+            //in update() (-_-)
+            var colliders = Physics.OverlapSphere(transform.position, aggrevateNearbyEnemiesRadius);
+            foreach (var collider in colliders) {
+                if (collider.TryGetComponent(out AIController enemy)) {
+                    enemy.Aggrevate();
+                }
+            }
+        }
+
         public void Aggrevate() {
             timeSinceAggrevated = 0;
         }
