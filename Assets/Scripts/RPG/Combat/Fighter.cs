@@ -49,15 +49,16 @@ namespace RPG.Combat {
                 return;
             }
 
-            if (!InRange()) {
+            if (!InRange(Target.transform.position)) {
                 mover.MoveTo(Target.transform.position);
             } else {
                 mover.Cancel();
                 AttackingBehaviour();
             }
-
-            bool InRange() => Vector3.SqrMagnitude(Target.transform.position - transform.position) < currentWeaponConfig.value.WeaponRange * currentWeaponConfig.value.WeaponRange;
         }
+
+        private bool InRange(Vector3 targetPos) =>
+            Vector3.SqrMagnitude(targetPos - transform.position) < currentWeaponConfig.value.WeaponRange * currentWeaponConfig.value.WeaponRange;
 
         private void AttackingBehaviour() {
             if (timeSinceLastAttack >= currentWeaponConfig.value.TimeBetweenAttacks) {
@@ -70,7 +71,8 @@ namespace RPG.Combat {
 
         public bool CanAttack(GameObject combatTarget) {
             if (combatTarget == null) return false;
-            if (!mover.CanMove(combatTarget.transform.position)) return false;
+            Vector3 targetPos = combatTarget.transform.position;
+            if (!mover.CanMove(targetPos) && !InRange(targetPos)) return false;
             Health targetToTest = combatTarget.GetComponent<Health>();
             return targetToTest != null && !targetToTest.IsDead;
         }
